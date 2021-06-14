@@ -4,7 +4,7 @@ const notion = new Client({auth: process.env.NOTION_KEY})
 
 const databaseId = process.env.NOTION_DATABASE_ID
 
-export default async function addItem(text){
+export default async function addItem(tarea,curso){
 	try{
 		await notion.request({
 			path: "pages",
@@ -12,15 +12,20 @@ export default async function addItem(text){
 			body: {
 				parent: { database_id: databaseId },
 				properties: {
-					title: {
+					'Tema':{
 						title: [
 							{
-								"text": {
-									"content": text
+								text: {
+									content: tarea
 								}
 							}
 						]
-					}
+					},
+					'Column':{
+						select: {
+							name: curso
+						},
+					},
 				}
 			}
 		})
