@@ -1,8 +1,10 @@
 import { Client } from "@notionhq/client"
+import { keys } from './keys.js'
+import createObject from './n_objs/tabla_1.js'
 
-const notion = new Client({auth: process.env.NOTION_KEY})
+const notion = new Client({auth: keys.NOTION_KEY })
 
-const databaseId = process.env.NOTION_DATABASE_ID
+const databaseId = keys.NOTION_DATABASE_ID
 
 export default async function addItem(tarea,curso){
 	try{
@@ -11,22 +13,7 @@ export default async function addItem(tarea,curso){
 			method: "POST",
 			body: {
 				parent: { database_id: databaseId },
-				properties: {
-					'Tema':{
-						title: [
-							{
-								text: {
-									content: tarea
-								}
-							}
-						]
-					},
-					'Column':{
-						select: {
-							name: curso
-						},
-					},
-				}
+				properties: createObject(tarea,curso) 
 			}
 		})
 	} catch (error) {

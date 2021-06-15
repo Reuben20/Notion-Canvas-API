@@ -1,8 +1,8 @@
-import { Client } from "@notionhq/client"
 import fetch from "node-fetch"
 import addItem from './notion.js'
+import { keys } from './keys.js'
 
-const canvasToken = process.env.CANVAS_TOKEN
+const canvasToken = keys.CANVAS_TOKEN
 
 var IDs = ['5966','5967','5968','5970','5972','6588']
 var names = ['ASI','SIE','Mainframes','Tesis I','DESAP','Ética y Deontologia']
