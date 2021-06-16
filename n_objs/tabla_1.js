@@ -1,4 +1,4 @@
-export default function createObject(tarea,curso){
+export default function createObject(tarea,curso,fecha){
 	return {
 		'Tema': {
 			title: [
@@ -9,6 +9,11 @@ export default function createObject(tarea,curso){
 		},
 		'Column': {
 			select: { name: curso }
+		},
+		'Fecha': {
+			"date": {
+				"start":fecha
+			}	
 		}
 	}
 }

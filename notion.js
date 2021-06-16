@@ -6,14 +6,14 @@ const notion = new Client({auth: keys.NOTION_KEY })
 
 const databaseId = keys.NOTION_DATABASE_ID
 
-export default async function addItem(tarea,curso){
+export default async function addItem(tarea,curso,fecha){
 	try{
 		await notion.request({
 			path: "pages",
 			method: "POST",
 			body: {
 				parent: { database_id: databaseId },
-				properties: createObject(tarea,curso) 
+				properties: createObject(tarea,curso,fecha) 
 			}
 		})
 	} catch (error) {

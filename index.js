@@ -17,7 +17,14 @@ for(let i=0;i<IDs.length;i++){
 	})
 	.then(res => res.json())
 	.then(data => {
-		data.forEach(element => addItem(element.name,names[i]))	
+		data.forEach(e => {
+			let now = new Date()
+			now.setHours(0,0,0)
+			if(now.toISOString() > e.due_at){
+				addItem(e.name,names[i],e.due_at)
+				//e.created_at - e.workflow_state - e.html_url
+			}
+		})
 	}).catch(err => console.log(err))
 
 }
